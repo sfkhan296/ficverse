@@ -1,0 +1,160 @@
+body {
+    background-color: grey;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.logo {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #fff;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #bbb;
+}
+
+.carousel-item img {
+    height: 500px;
+    object-fit: cover;
+}
+/*book.html*/
+#books {
+    padding: 50px;
+}
+
+.book-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.book {
+    background: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 200px;
+}
+
+.book img {
+    width: 100%;
+    border-radius: 5px;
+}
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;  /* Space between logo and text */
+}
+/*audiobook.html*/
+.audiobook-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.audiobook {
+    width: 250px;
+    text-align: center;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+.audiobook img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+audio {
+    width: 100%;
+    margin-top: 10px;
+}
+/*search bar*/
+.search--container {
+    position: relative;
+    width: 70%;
+    max-width: 400px;
+    margin: auto;
+}
+
+.search--dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    color: black;
+    width: 32%;
+    border: 1px solid #ddd;
+    display: none;
+    z-index: 10; /* Ensure it's above other elements */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search--item {
+    display: block;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-decoration: none;
+    color: black;
+}
+
+.search--item:hover {
+    background: #f1f1f1;
+}
+
+
+.hero {
+    background: url('hero-bg.jpg') no-repeat center center/cover ;
+    color: white;
+    padding: 100px 20px;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+}
+
+.hero .btn {
+    background: #ff5722;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 10px;
+}
+#about {
+    padding: 50px;
+    background-color: grey;
+    align-items: center;
+}
+footer {
+    background-color: #222;
+    color: white;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .search--container {
+        width: 100%;
+        padding: 10px;
+        order: 3;
+    }
+    
+    nav .container {
+        flex-wrap: wrap;
+    }
+}
+

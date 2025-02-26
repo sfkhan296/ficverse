@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .signin-form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            width: 350px;
+        }
+        .signin-form h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .input-group {
+            margin-bottom: 12px;
+        }
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+        .signup-link {
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <form class="signin-form" onsubmit="return validateLogin(event)">
+
+        <h2>Sign In</h2>
+
+        <div class="input-group">
+            <label for="login">Username or Email</label>
+            <input type="text" id="login" required>
+        </div>
+
+        <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" required>
+            <span onclick="togglePassword()" style="cursor:pointer;">👁</span>
+        </div>
+        
+        <script>
+            function togglePassword() {
+                let passwordField = document.getElementById("password");
+                passwordField.type = passwordField.type === "password" ? "text" : "password";
+            }
+        </script>
+
+        <button type="submit" class="btn">Login</button>
+
+        <div class="signup-link">
+            <p>Not registered? <a href="signup.html">Sign Up</a></p>
+        </div>
+    </form>
+
+    <script>
+        function validateLogin(event) {
+            event.preventDefault(); // ✅ Stops default form submission
+    
+            let login = document.getElementById("login").value.trim();
+            let password = document.getElementById("password").value.trim();
+    
+            // Retrieve stored users
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+
+            // Debugging: Check stored users
+            console.log("Stored users:", users);
+
+            // Find user
+            let user = users.find(u => (u.username === login || u.email === login) && u.password === password);
+
+            if (user) {
+                setTimeout(() => {
+                    window.location.replace("Hom.html"); // ✅ Redirect to home page
+                }, 500);
+            } else {
+                alert("Invalid login. Please check your credentials.");
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .signup-form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            width: 350px;
+        }
+        .signup-form h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .input-group {
+            margin-bottom: 12px;
+        }
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <form class="signup-form" onsubmit="return validateForm()">
+        <h2>Sign Up</h2>
+
+        <div class="input-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" required>
+        </div>
+
+        <div class="input-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" required>
+            <small class="error" id="usernameError"></small>
+        </div>
+
+        <div class="input-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" pattern="[0-9]{10}" required>
+            <small class="error">Format: 10-digit number</small>
+        </div>
+
+        <div class="input-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" required>
+        </div>
+
+        <div class="input-group">
+            <label for="password">Password</label>
+            <div style="position: relative;">
+                <input type="password" id="password" required>
+                <span onclick="togglePassword('password', 'eyeIcon1')" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+                    👁️
+                </span>
+            </div>
+            <small class="error" id="passwordError"></small>
+        </div>
+        
+        <div class="input-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <div style="position: relative;">
+                <input type="password" id="confirmPassword" required>
+                <span onclick="togglePassword('confirmPassword', 'eyeIcon2')" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+                    👁️
+                </span>
+            </div>
+            <small class="error" id="confirmPasswordError"></small>
+        </div>
+        
+        <script>
+            function togglePassword(inputId) {
+                let passwordField = document.getElementById(inputId);
+                passwordField.type = passwordField.type === "password" ? "text" : "password";
+            }
+        </script>
+        
+
+        <button type="submit" class="btn">Sign Up</button>
+    </form>
+
+    <script>
+        function validateForm() {
+            let username = document.getElementById("username").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirmPassword").value;
+    
+            // Get stored users or initialize empty array
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+    
+            // Check if username or email is already taken
+            if (users.some(user => user.username === username || user.email === email)) {
+                alert("Username or Email already taken!");
+                return false;
+            }
+    
+            // Confirm password validation
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return false;
+            }
+    
+            // Store new user
+            users.push({ username, email, password });
+            localStorage.setItem("users", JSON.stringify(users));
+    
+            window.location.href = "signin.html"; // Redirect to Sign-In
+            return false;
+        }
+    </script>
+    
+
+</body>
+</html>
